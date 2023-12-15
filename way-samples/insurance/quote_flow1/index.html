@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="utf-8">
+	<title>way.com insurance Flow</title>
+	<meta http-equiv="Cache-control" content="public">
+	<meta name="fragment" content="!">
+	<meta name="description" content="way.com insurance Flow">
+	<meta name="keywords" content="way.com, insurance Flow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,IE=10,IE=11,chrome=1" />
+	<meta content="ie=edge" http-equiv="x-ua-compatible">
+	<link data-cfasync="true" rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<meta name="robots" content="index, noindex">
+    <style>
+        body{
+     margin: 0px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+ .logo{
+     padding-top: 10px;
+     text-align: center;
+     margin: 0;
+     width: auto;
+     background-color: #E71346;
+     min-height: 180px;
+}
+ .heading{
+     margin-top: 3%;
+     text-align: center;
+     color: #ffffff;
+     font-size: 40px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+ .box{
+     width: 70%;
+     border: 1px dotted black;
+     background-color: #dfe0e2;
+     height: auto;
+     margin-top: 5%;
+     padding: 20px;
+     margin: 2% 15% 0 15%;
+     display: inline-block;
+     box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    /* display: flex;
+     flex-wrap: nowrap;
+     */
+}
+ .quoteBox{
+     /* border: 1px dotted black;
+     box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+     background-color: #ffffff; */
+}
+ .block{
+     width: 49%;
+     margin: 0;
+     display: inline-block;
+}
+ .blockFull{
+     width: 99%;
+     margin: 0;
+     display: inline-block;
+}
+ h3{
+     margin-bottom: 5%;
+}
+ .text{
+     width: 190px;
+     display: inline-block;
+     margin-bottom: 3%;
+}
+ .input{
+     min-width: 230px;
+     height: 25px;
+}
+ .getQuotes{
+     background-color: #E71346;
+     width: auto;
+     padding: 10px;
+     color: #ffffff;
+     border-radius: 5px;
+     text-align: center;
+     cursor: pointer;
+     margin-top: 2%;
+}
+.errorVal{
+    display: none;
+     width: auto;
+     padding: 10px;
+     color: #E71346;
+     border-radius: 5px;
+     text-align: center;
+     cursor: pointer;
+     margin-top: 2%;
+     text-align: center;
+}
+ .red{
+     color: #E71346;
+     font-size: 10px;
+     vertical-align: super;
+}
+.w70{
+    width: 70%;
+}
+ .quotes{
+     width: 32%;
+     padding: 2%;
+     padding-left: 0px;
+     padding-right: 0px;
+     border: 1px solid #E71346;
+     margin-right: 2%;
+     background-color: #E71346;
+     border-radius: 5px;
+     color: #ffffff;
+     display: inline-block;
+     margin: 0 auto;
+     margin-left: 5px;
+}
+ .code{
+     background: #000000;
+     color: #ffffff;
+     white-space: pre-wrap;
+     max-height: 300px;
+     overflow: scroll;
+     padding: 10px;
+     margin-top: 2%;
+     margin-bottom: 2%;
+}
+ .quotes img{
+     width: 90%;
+     margin-left: 5%;
+}
+ .quoteVal{
+     padding-left: 5%;
+     padding-top: 1%;
+}
+.marBot0{
+    margin-bottom: 0;
+}
+#quoteList{
+    display: none;
+}
+.noCoverage{
+    color: #E71346;
+    margin-top: 0;
+}
+#quoteIframe{
+    display: none;
+}
+.spinner{display:none;width:100%;position:fixed;top:0;background:rgba(255,255,255,.5);left:0;z-index:1052!important;height:100vh}.spin-c{top:50%;left:calc(50% - 30.5px);position:absolute!important}.spin-c>div{width:18px;height:18px;background-color:#E71346;border-radius:100%;display:inline-block;-webkit-animation:skbd 1.4s infinite ease-in-out both;animation:skbd 1.4s infinite ease-in-out both}.spin-c .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}.spin-c .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}@-webkit-keyframes skbd{0%,100%,80%{-webkit-transform:scale(0)}40%{-webkit-transform:scale(1)}}@keyframes skbd{0%,100%,80%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}
+
+    </style>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-ui.min-1.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoNnABvssy1fuVBzsG6OwdE5JNUbESlsE&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+</head>
+
+<body>
+
+    <div class="spinner">
+        <div class="spin-c">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="logo">
+
+        <svg width="182" height="67" viewBox="0 0 182 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M92.1946 49.9479C93.6884 49.9479 94.7234 49.2466 95.2996 47.8438L108.552 16.874C108.595 16.7863 108.616 16.7096 108.616 16.6438C108.616 16.5562 108.584 16.4575 108.52 16.3479C108.392 16.1945 108.242 16.1178 108.072 16.1178H99.845C99.653 16.1178 99.5143 16.2164 99.4289 16.4137L91.8745 34.1671L84.2881 16.4137C84.1814 16.2164 84.0427 16.1178 83.8719 16.1178H76.2535C76.0828 16.1178 75.9441 16.1945 75.8374 16.3479C75.7307 16.5233 75.72 16.6986 75.8054 16.874L79.4545 25.4219L75.7413 34.1671L68.8271 17.926C68.315 16.7205 67.4187 16.1178 66.1383 16.1178H59.5122C59.3628 16.1178 59.2241 16.1945 59.096 16.3479C59.032 16.4575 59 16.5781 59 16.7096C59 16.7534 59.0107 16.8082 59.032 16.874L72.2842 47.8438C72.8818 49.2466 73.9274 49.9479 75.4212 49.9479C76.9151 49.9479 77.9607 49.2466 78.5582 47.8438L83.8079 35.6137L89.0576 47.8438C89.6551 49.2466 90.7008 49.9479 92.1946 49.9479ZM126.342 50.5397C130.183 50.5397 133.448 49.2794 136.137 46.7589C137.503 48.5342 139.295 49.4219 141.515 49.4219H142.603C142.945 49.4219 143.115 49.2466 143.115 48.8959V16.6438C143.115 16.2932 142.945 16.1178 142.603 16.1178H141.515C139.295 16.1178 137.503 17.0055 136.137 18.7808C133.448 16.2603 130.183 15 126.342 15C121.562 15 117.486 16.7315 114.114 20.1945C110.742 23.6795 109.046 27.8767 109.024 32.7863C109.046 37.6959 110.742 41.8822 114.114 45.3452C117.486 48.8082 121.562 50.5397 126.342 50.5397ZM126.342 41.7616C123.909 41.7616 121.839 40.8849 120.132 39.1315C118.425 37.4 117.571 35.2849 117.571 32.7863C117.571 30.2877 118.425 28.1616 120.132 26.4082C121.839 24.6548 123.909 23.7781 126.342 23.7781C128.775 23.7781 130.834 24.6548 132.52 26.4082C134.227 28.1616 135.081 30.2877 135.081 32.7863C135.081 35.2849 134.227 37.4 132.52 39.1315C130.834 40.8849 128.775 41.7616 126.342 41.7616ZM157.672 63C158.526 63 159.379 62.8247 160.233 62.474C162.026 61.7507 163.306 60.4904 164.074 58.6931L181.936 16.874C181.979 16.8082 182 16.7425 182 16.6767C182 16.5671 181.957 16.4575 181.872 16.3479C181.765 16.1945 181.627 16.1178 181.456 16.1178H173.197C173.005 16.1178 172.866 16.2164 172.781 16.4137L163.818 37.4219L155.496 17.926C154.983 16.7205 154.087 16.1178 152.807 16.1178H146.181C146.031 16.1178 145.892 16.1945 145.764 16.3479C145.7 16.4575 145.668 16.5781 145.668 16.7096C145.668 16.7534 145.679 16.8082 145.7 16.874L159.145 48.3041L153.639 61.1918C153.511 61.5205 153.596 61.7616 153.895 61.9151L154.919 62.3753C155.837 62.7918 156.755 63 157.672 63Z"
+                fill="#ffffff" />
+            <path
+                d="M46.2694 38.6746L46.2653 38.6804L44.5316 36.6457C47.7523 31.8957 49.3342 27.7084 49.365 23.8591C49.4153 17.5447 47.1161 11.5849 42.891 7.07688C38.6236 2.52363 32.9352 0.0101026 26.8928 0.000757696L26.7987 0C20.7367 0.0101026 15.0485 2.52363 10.7809 7.07663C6.55603 11.5847 4.25656 17.5444 4.30669 23.8588C4.33772 27.7019 5.91534 31.8826 9.12668 36.6255L3.42824 43.3185C1.03973 46.1285 -0.170996 49.766 0.0194928 53.561C0.207833 57.3545 1.77495 60.8367 4.43153 63.3653C7.07069 65.8768 10.5537 67.1725 14.1116 66.9727C17.6992 66.7714 20.9921 65.1113 23.3864 62.2942L26.8216 58.2107L30.2213 62.3051C32.7585 65.2889 36.3957 67 40.2007 67H40.2031C43.5216 67 46.7055 65.7091 49.1683 63.3653C51.8246 60.8367 53.3917 57.3553 53.5806 53.561C53.7708 49.7652 52.5598 46.1278 50.1747 43.3223L46.2692 38.6746H46.2694ZM23.4239 54.1265L19.5826 58.6926C18.1054 60.4295 16.0669 61.4547 13.8438 61.5792C11.6152 61.6959 9.47257 60.897 7.84482 59.3506C6.2037 57.7884 5.23431 55.6308 5.11567 53.2754C4.9987 50.9207 5.74657 48.6678 7.22203 46.9317L12.3335 40.9282C13.3991 42.2511 14.468 43.5076 15.3737 44.5714L15.5155 44.7389L15.5016 44.7475L23.4239 54.1265ZM31.1943 20.9945L26.8524 15.8055L12.6335 32.5062C10.4868 29.1364 9.43175 26.287 9.4117 23.8129C9.37303 18.949 11.1469 14.3558 14.4055 10.8792C17.7073 7.35546 22.1095 5.4097 26.8357 5.39984C31.5402 5.39984 35.9548 7.34561 39.2667 10.8792C42.5253 14.3556 44.2991 18.949 44.2604 23.8129C44.2404 26.292 43.1803 29.1498 41.0238 32.5289L31.194 20.9942L31.1943 20.9945ZM26.8149 23.9189L37.8604 36.9127C36.6951 38.3831 35.5075 39.7798 34.5348 40.9247C33.9139 41.6536 33.3209 42.3506 32.7795 43.005L26.8424 50.0632L21.0012 43.1525L20.8967 43.0093C20.3512 42.3506 19.7583 41.6533 19.1379 40.9247C18.1553 39.7692 16.9563 38.3588 15.7831 36.8763L26.8147 23.9192L26.8149 23.9189ZM30.2416 54.1449L36.6168 46.5672C37.1479 45.9257 37.7241 45.2471 38.3283 44.5361C39.1977 43.5137 40.2501 42.2766 41.3069 40.9673L46.3766 46.9309C47.8532 48.6678 48.6016 50.9207 48.4844 53.2754C48.366 55.6308 47.3968 57.7877 45.7555 59.3498C44.2277 60.8023 42.2529 61.6027 40.1945 61.6027C37.8401 61.6027 35.5939 60.5482 34.0366 58.7154L30.2418 54.1449H30.2416Z"
+                fill="#ffffff" />
+        </svg>
+        <div class="heading">Quote integration</div>
+
+
+
+    </div>
+
+    <div class="box" id="initial">
+        <h3>Get Quote Request</h3>
+        <div class="block">
+            <div class="ele">
+                <span class="text"> Email<span class="red">*</span> : &nbsp;</span><input type="text" id="email"
+                    class="input" placeholder="Email Id" />
+            </div>
+
+            <div class="ele">
+                <span class="text"> First Name<span class="red">*</span>: &nbsp;</span><input type="text" id="firstName"
+                    class="input" placeholder="First Name" />
+            </div>
+
+            <div class="ele">
+                <span class="text"> Last Name<span class="red">*</span>: &nbsp;</span><input type="text" id="lastName"
+                    class="input" placeholder="Last Name" />
+            </div>
+
+            <div class="ele">
+                <span class="text"> Driver License Number<span class="red">*</span>: &nbsp;</span><input type="text"
+                    id="driverLicenseNumber" class="input" placeholder="Driver License Number" />
+            </div>
+
+            <div class="ele">
+                <span class="text"> Address<span class="red">*</span>: &nbsp;</span><input class="input" id="billingAdd"
+                    aria-label="billing" name="billing" type="text" placeholder="Address ">
+            </div>
+
+            <div class="ele">
+                <span class="text"> Vehicle Year<span class="red">*</span>: &nbsp;</span>
+
+                <select class="input" id="veh-years" name="vehYear"></select>
+
+
+            </div>
+
+            <div class="ele">
+                <span class="text"> Make<span class="red">*</span>: &nbsp;</span>
+                <select class="input" id="vehMake" name="vehMake"></select>
+
+
+            </div>
+            <div class="ele">
+                <span class="text"> Model<span class="red">*</span>: &nbsp;</span>
+                <select class="input" id="vehModel" name="vehModel"></select>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div class="block">
+            <div class="ele">
+                <span class="text"> Vin: &nbsp;</span><input class="input" id="vin" type="text" placeholder="Vin ">
+            </div>
+            <div class="ele">
+                <span class="text"> Phone Number<span class="red">*</span>: &nbsp;</span><input type="text"
+                    id="phoneNumber" class="input" placeholder="Phone Number" />
+            </div>
+
+            <div class="ele">
+                <span class="text"> Date Of Birth<span class="red">*</span>: &nbsp;</span><input type="text"
+                    id="dateOfBirth" class="input" placeholder="yyyy-mm-dd" />
+            </div>
+
+            <div class="ele">
+                <form>
+                    <span class="text"> Gender<span class="red">*</span>: &nbsp;</span>
+
+
+                    <input type="radio" id="gender_male" name="gender" value="M">
+                      <label for="gender_male">Male</label>
+                      <input type="radio" id="gender_female" name="gender" value="F">
+                      <label for="gender_female">Female</label>
+                </form>
+            </div>
+
+            <div class="ele">
+                <form>
+                    <span class="text"> Marital Status<span class="red">*</span>: &nbsp;</span>
+
+
+                    <input type="radio" id="maritalStatus_S" name="maritalStatus" value="S">
+                      <label for="maritalStatus_S">Single</label>
+                      <input type="radio" id="maritalStatus_N" name="maritalStatus" value="M">
+                      <label for="maritalStatus_N">Married</label>
+
+                </form>
+            </div>
+
+            <div class="ele">
+                <form>
+                    <span class="text"> Own Home: &nbsp;</span>
+
+
+                    <input type="radio" id="ownHome_S" name="ownHome" value="Yes">
+                      <label for="ownHome_S">Yes</label>
+                      <input type="radio" id="ownHome_N" name="ownHome" value="No">
+                      <label for="ownHome_N">No</label>
+
+                </form>
+            </div>
+
+
+
+            <div class="ele">
+                <span class="text"> Annual Mileage: &nbsp;</span><input type="text" id="annualMileage" class="input"
+                    placeholder="Annual Mileage" />
+            </div>
+
+            <div class="ele">
+                <form>
+                    <span class="text"> Student: &nbsp;</span>
+
+
+                    <input type="radio" id="student_S" name="student" value="true">
+                      <label for="student_S">Yes</label>
+                      <input type="radio" id="student_N" name="student" value="false">
+                      <label for="student_N">No</label>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="blockFull">
+            <div class="ele">
+                <span class="text"> Web Hook URL: &nbsp;</span><input type="text" id="webhookURL" class="input w70"
+                    placeholder="Web Hook URL" />
+            </div>
+            <div class="getQuotes" onclick="getQuotes();">Get Quotes</div>
+            <div class="errorVal"></div>
+
+
+        </div>
+    </div>
+
+    <div class="box" id="quoteList">
+        <h3 class="marBot0">Quote Respose - JSON</h3><br />
+        <div class="code"></div>
+        <h3>Quote Lists</h3><br />
+
+        <div class="liability">
+            <h3 class="marBot0" id="liability">Liability Coverage</h3><br />
+            <h4 class="marBot0 noCoverage" id="noCoverageLiability">No Quotes available for Liability Coverage</h4>
+            <br />
+            <div class="quoteBox">
+                <div class="review">Carrier Review: I had an amazing experience with Way.com insurance! They helped me
+                    find an affordable policy with Bristol West that provided excellent coverage. The support team at
+                    Way.com was so helpful during the claims process. I highly recommend their services.</div>
+                <div class="quotes">
+                </div>
+            </div>
+        </div>
+
+        <div class="maximum"></div>
+        <div class="minimum"></div>
+        <div class="premium"></div>
+
+
+    </div>
+
+    <div class="box" id="quoteIframe">
+        <iframe id="quoteIframeUrl" src="" width="100%" height="500px"></iframe>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            
+        });
+
+        var url = new URL(window.location.href);
+var username = url.searchParams.get("username");
+var password = url.searchParams.get("password");
+var token='Basic '+btoa(username+':'+password);
+console.log(token)
+var address ={};
+var quotesList={};
+        function initAutocomplete() {     
+            address1Field = document.querySelector("#billingAdd");
+            autocomplete = new google.maps.places.Autocomplete(address1Field, {
+                componentRestrictions: { country: ["us", "ca"] },
+                fields: ["address_components", "geometry"],
+                types: ["address"],
+            });
+            autocomplete.addListener("place_changed", fillInAddress);
+        }
+        function fillInAddress() {
+            const place = autocomplete.getPlace();
+            address['latitude'] = place.geometry.location.lat();
+            address['longitude'] = place.geometry.location.lng();
+            address['addressString'] = '';
+            address['apartmentNumber'] = '';
+            
+            for (const component of place.address_components) {
+                const componentType = component.types[0];
+                switch (componentType) {
+                    case "street_number": {
+                        address['addressLine1'] = component.long_name;
+                        address['street'] = component.long_name;
+                        break;
+                    }
+                    case "route": {
+                        address['addressLine2'] = component.long_name;
+                        break;
+                    }
+                    case "locality": {
+                        address['city'] = component.long_name;
+                        break;
+                    }
+                    case "postal_code": {
+                        address['zipcode'] = component.long_name;
+                        break;
+                    }
+                    case "postal_code": {
+                        address['zipcode'] = component.long_name;
+                        break;
+                    }
+                    case "administrative_area_level_1": {
+                        address['state'] = component.short_name;
+                        break;
+                    }
+                    case "administrative_area_level_1": {
+                        address['stateCode'] = component.short_name;
+                        break;
+                    }
+                    case "country": {
+                        address['country'] = component.long_name;
+                        break;
+                    }
+                }
+            }
+            console.log(address);
+        }
+
+        function getQuotes(){
+            var email=$('#email').val();
+            var firstName=$('#firstName').val();
+            var lastName=$('#lastName').val();
+            var phoneNumber=$('#phoneNumber').val();
+            var driverLicenseNumber=$('#driverLicenseNumber').val();
+            var gender=$('input[name="gender"]:checked').val();
+            var maritalStatus=$('input[name="maritalStatus"]:checked').val();
+            var ownHome=$('input[name="ownHome"]:checked').val();
+            var student=$('input[name="student"]:checked').val();
+            var dateOfBirth=$('#dateOfBirth').val();
+            var annualMileage=$('#annualMileage').val();
+            var webhookURL=$('#webhookURL').val();
+            var year=$('#veh-years').val();
+            var model=$('#vehModel').val();
+            var make=$('#vehMake').val();
+            var vehMake=$('#vehMake').val();
+            var vin=$('#vin').val();
+            
+            var newData={
+    "email":email,
+    "firstName":firstName,
+    "lastName":lastName,
+    "phoneNumber":phoneNumber,
+    "driverLicenseNumber":driverLicenseNumber,
+    "dateOfBirth":dateOfBirth,
+    "gender":gender,
+    "maritalStatus":maritalStatus,
+    "webhookURL":webhookURL,
+    "address" : {
+        "addressLine1":address.addressLine1,
+        "addressLine2":address.addressLine2,
+        "city":address.city,
+        "state":address.state,
+        "postalCode":address.zipcode
+    },
+    "vehicles":[
+        {
+            "year":year,
+            "make":make,
+            "model":model,
+            "vin":vin,
+            "annualMileage":annualMileage
+        }
+    ],
+    "ownHome":"Yes",
+    "student":false,
+    "industry":null,
+    "education":null
+}
+$('.spinner').show();
+$('.errorVal').hide();
+data=JSON.stringify(newData);
+            $.ajax({
+        url: window.location.origin + '/way-insurance/v1/public/vendor/quoteRequest',
+        type: "POST",
+        data: JSON.stringify(newData),
+        beforeSend: function(request) {
+    request.setRequestHeader("Authorization", token);
+  },
+        dataType: 'json',
+        contentType: "application/json;charset=UTF-8",
+        cache: false,
+        async: true,
+        success: function (data) {
+            $('.spinner').hide();
+            console.log(data.transactionId);
+            fetchQuotes(data.transactionId);
+
+        },
+        error: function (data) {
+            $('.spinner').hide();
+            $('.errorVal').text(JSON.parse(data.responseText).message).show();
+            
+
+        }
+    });
+}
+       
+
+function getYears(){
+    $.ajax({
+        url: window.location.origin + '/way-insurance/v1/vehicle/years',
+        type: "GET",
+        async: true,
+        beforeSend: function(request) {
+    request.setRequestHeader("Authorization", token);
+  },
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "Content-Type": "text/plain; charset=utf-8"
+        },
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            var option='<option value="">Select Vehicle Year</option>';
+            if(data.years){
+                for(var i=0;i<data.years.length;i++){
+                    option+='<option value="'+data.years[i]+'">'+data.years[i]+'</option>'
+                }
+            }
+
+            $('#veh-years').children().remove().end().append(option);
+        }
+    });
+}
+getYears();
+
+function getMake(year){
+    $.ajax({
+        url: window.location.origin + '/way-insurance/v1/vehicle/'+year,
+        type: "GET",
+        async: true,
+        beforeSend: function(request) {
+    request.setRequestHeader("Authorization", token);
+  },
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "Content-Type": "text/plain; charset=utf-8"
+        },
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            var option='<option value="">Select Make</option>';
+            if(data.makes){
+                for(var i=0;i<data.makes.length;i++){
+                    option+='<option value="'+data.makes[i]+'">'+data.makes[i]+'</option>'
+                }
+            }
+
+            $('#vehMake').children().remove().end().append(option);
+        }
+    });
+}
+$('#veh-years').on('change', function() {
+    getMake(this.value);
+    var option='<option value="">Select Model</option>';
+    $('#vehModel').children().remove().end().append(option);
+});
+
+function getModel(make){
+    var year=$('#veh-years').val();
+    $.ajax({
+        url: window.location.origin + '/way-insurance/v1/vehicle/'+year+'/'+make,
+        type: "GET",
+        async: true,
+        beforeSend: function(request) {
+    request.setRequestHeader("Authorization", token);
+  },
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "Content-Type": "text/plain; charset=utf-8"
+        },
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            var option='<option value="">Select Make</option>';
+            if(data.models){
+                for(var i=0;i<data.models.length;i++){
+                    option+='<option value="'+data.models[i]+'">'+data.models[i]+'</option>'
+                }
+            }
+
+            $('#vehModel').children().remove().end().append(option);
+        }
+    });
+}
+$('#vehMake').on('change', function() {
+    getModel(this.value);
+});
+function fetchQuotes(id){
+    //id='43809f76-f152-4bc5-98fc-5e6da1a287cc';
+
+    $.ajax({
+        url: window.location.origin + '/way-insurance/v1/public/vendor/quoteRequest/' + id+'/results',
+        type: "GET",
+        async: true,
+        beforeSend: function(request) {
+    request.setRequestHeader("Authorization", token);
+  },
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "Content-Type": "text/plain; charset=utf-8"
+        },
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            $('.spinner').hide();
+            console.log(data);
+            quotesList=data;
+            $('.code').html('').text(JSON.stringify(quotesList, null, 2));
+            $('#quoteList').show();
+            $('#initial').hide();
+
+            if(quotesList.quotes.liabilityCoverage && quotesList.quotes.liabilityCoverage && quotesList.quotes.liabilityCoverage.coverages.length>-1){
+                var quoteList='';
+                for(var i=0;i<quotesList.quotes.liabilityCoverage.coverages.length;i++){
+                    var url=quotesList.quotes.liabilityCoverage.coverages[i].iframeURL.split('.com')[1]
+                    quoteList+='<div class="quotes" src="'+url+'"><img src="'+quotesList.quotes.liabilityCoverage.coverages[i].logoPath+'"/><br/><div class="quoteVal">Total Premium : $'+quotesList.quotes.liabilityCoverage.coverages[i].totalPremium+'</div><div class="quoteVal">Yearly Savings : $'+quotesList.quotes.liabilityCoverage.coverages[i].yearlySavings+'</div><div class="quoteVal">Total Reviews : '+quotesList.quotes.liabilityCoverage.coverages[i].totalReviews+'</div><div class="quoteVal">Term : '+quotesList.quotes.liabilityCoverage.coverages[i].term+' months</div><div class="quoteVal">Agent Number : '+quotesList.quotes.liabilityCoverage.coverages[i].agentNumber+'</div><div class="quoteVal">Num Of Cars : '+quotesList.quotes.liabilityCoverage.coverages[i].numOfCars+'</div><div class="quoteVal">Num Of Drivers : '+quotesList.quotes.liabilityCoverage.coverages[i].numOfDrivers+'</div><div class="quoteVal">Company Name : '+quotesList.quotes.liabilityCoverage.coverages[i].companyName+'</div></div>';
+                }
+            $('.liability').html('').html('<h3 class="marBot0" id="liability">Liability Coverage</h3><br/><div class="quoteBox">'+quoteList)+'</div>';
+            }else{
+            $('.liability').html('').html('<h3 class="marBot0" id="liability">Liability Coverage</h3><br/><h4 class="marBot0 noCoverage" id="noCoverageLiability">No Quotes available for Liability Coverage</h4><br/>')  
+            }
+
+            if(quotesList.quotes.minimumCoverage && quotesList.quotes.minimumCoverage && quotesList.quotes.minimumCoverage.coverages.length>-1){
+                var quoteList='';
+                for(var i=0;i<quotesList.quotes.minimumCoverage.coverages.length;i++){
+                    var url=quotesList.quotes.minimumCoverage.coverages[i].iframeURL.split('.com')[1]
+                    quoteList+='<div class="quotes" src="'+url+'"><img src="'+quotesList.quotes.minimumCoverage.coverages[i].logoPath+'"/><br/><div class="quoteVal">Total Premium : $'+quotesList.quotes.minimumCoverage.coverages[i].totalPremium+'</div><div class="quoteVal">Yearly Savings : $'+quotesList.quotes.minimumCoverage.coverages[i].yearlySavings+'</div><div class="quoteVal">Total Reviews : '+quotesList.quotes.minimumCoverage.coverages[i].totalReviews+'</div><div class="quoteVal">Term : '+quotesList.quotes.minimumCoverage.coverages[i].term+' months</div><div class="quoteVal">Agent Number : '+quotesList.quotes.minimumCoverage.coverages[i].agentNumber+'</div><div class="quoteVal">Num Of Cars : '+quotesList.quotes.minimumCoverage.coverages[i].numOfCars+'</div><div class="quoteVal">Num Of Drivers : '+quotesList.quotes.minimumCoverage.coverages[i].numOfDrivers+'</div><div class="quoteVal">Company Name : '+quotesList.quotes.minimumCoverage.coverages[i].companyName+'</div></div>';
+                }
+            $('.minimum').html('').html('<h3 class="marBot0" id="minimum">Minimum Coverage</h3><br/><div class="quoteBox">'+quoteList)+'</div>';
+            }else{
+            $('.minimum').html('').html('<h3 class="marBot0" id="minimum">Minimum Coverage</h3><br/><h4 class="marBot0 noCoverage" id="noCoverageMinimum">No Quotes available for Minimum" Coverage</h4><br/>')  
+            }
+
+            if(quotesList.quotes.premiumCoverage && quotesList.quotes.premiumCoverage && quotesList.quotes.premiumCoverage.coverages.length>-1){
+                var quoteList='';
+                for(var i=0;i<quotesList.quotes.premiumCoverage.coverages.length;i++){
+                    var url=quotesList.quotes.premiumCoverage.coverages[i].iframeURL.split('.com')[1]
+                    quoteList+='<div class="quotes" src="'+url+'"><img src="'+quotesList.quotes.premiumCoverage.coverages[i].logoPath+'"/><br/><div class="quoteVal">Total Premium : $'+quotesList.quotes.premiumCoverage.coverages[i].totalPremium+'</div><div class="quoteVal">Yearly Savings : $'+quotesList.quotes.premiumCoverage.coverages[i].yearlySavings+'</div><div class="quoteVal">Total Reviews : '+quotesList.quotes.premiumCoverage.coverages[i].totalReviews+'</div><div class="quoteVal">Term : '+quotesList.quotes.premiumCoverage.coverages[i].term+' months</div><div class="quoteVal">Agent Number : '+quotesList.quotes.premiumCoverage.coverages[i].agentNumber+'</div><div class="quoteVal">Num Of Cars : '+quotesList.quotes.premiumCoverage.coverages[i].numOfCars+'</div><div class="quoteVal">Num Of Drivers : '+quotesList.quotes.premiumCoverage.coverages[i].numOfDrivers+'</div><div class="quoteVal">Company Name : '+quotesList.quotes.premiumCoverage.coverages[i].companyName+'</div></div>';
+                }
+            $('.premium').html('').html('<h3 class="marBot0" id="premium">Premium Coverage</h3><br/><div class="quoteBox">'+quoteList)+'</div>';
+            }else{
+            $('.premium').html('').html('<h3 class="marBot0" id="premium">Premium Coverage</h3><br/><h4 class="marBot0 noCoverage" id="noCoveragePremium">No Quotes available for Premium Coverage</h4><br/>')  
+            }
+            $(".quotes").on('click', function (e) {
+                $('#quoteIframe,#quoteList').toggle();
+                var url=window.location.origin +$(this).attr('src');//"http://localhost:4200"+$(this).attr('src');//;
+                $('#quoteIframeUrl').attr('src',url)
+            });
+        }
+
+
+
+    });
+}
+    </script>
+</body>
