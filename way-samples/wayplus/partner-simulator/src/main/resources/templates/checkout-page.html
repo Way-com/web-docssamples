@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadside Assistance Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .car-icon {
+            height: 115px;
+            width: 150px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            background-image: url('/way-partner-simulator/images/car-icon.png');
+            background-size: 100% 100%;
+            background-position: left center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .plan-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .plan-table th, .plan-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .plan-table th {
+            background-color: #f2f2f2;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        .plan-option {
+            cursor: pointer;
+        }
+
+        .cta-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .email-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #iframe-container {
+            width: 100%;
+            height: 500px;
+            display: none;
+            margin-top: 20px;
+        }
+        #loading-message {
+            text-align: center;
+            display: none;
+        }
+
+        .success-message h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            margin-bottom: 20px;
+        }
+
+        .success-message ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .success-message li {
+            margin-bottom: 10px;
+        }
+
+        .download-section {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .download-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .done-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .checkout-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        .checkout-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .spacer {
+            width: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="car-background">
+    <div class="car-icon"></div>
+    </div>
+    <h1>Your reliable safety net on the road</h1>
+    <p class="subtitle">We've partnered with Way+ to offer you exclusive roadside assistance plans.</p>
+</div>
+
+<form id="plan-form">
+    <input type="text" id="fullName-input" class="input-field" placeholder="Enter your full name" required>
+    <p id="fullName-error" class="error-message">Please enter your full name.</p>
+
+    <input type="email" id="email-input" class="email-field" placeholder="Enter your email" required>
+    <p id="email-error" class="error-message">Please enter a valid email address.</p>
+    <table class="plan-table">
+        <tr>
+            <th>What you get</th>
+            <th class="plan-option" data-plan="Basic">Basic</th>
+            <th class="plan-option" data-plan="Premium">Premium</th>
+        </tr>
+        <tr>
+            <td>Towing</td>
+            <td>10 miles</td>
+            <td>50 miles</td>
+        </tr>
+        <tr>
+            <td>Glass coverage</td>
+            <td>-</td>
+            <td>$250</td>
+        </tr>
+        <tr>
+            <td>Uber/Lyft</td>
+            <td>$25</td>
+            <td>$40</td>
+        </tr>
+        <tr>
+            <td>Jump start</td>
+            <td>✓</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Flat tire change</td>
+            <td>✓</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Monthly cost</td>
+            <td>$4.99</td>
+            <td>$9.99</td>
+        </tr>
+    </table>
+
+    <button id="cta-button" class="cta-button" type="submit" disabled>Pick a plan to proceed</button>
+</form>
+
+<p id="footer-text" class="footer">Coverage subject to terms and conditions. Learn more</p>
+
+
+<div id="loading-message">Loading...</div>
+<div id="iframe-container"></div>
+
+
+<script>
+    const planForm = document.getElementById('plan-form');
+    const fullNameInput = document.getElementById('fullName-input');
+    const fullNameError = document.getElementById('fullName-error');
+    const emailInput = document.getElementById('email-input');
+    const emailError = document.getElementById('email-error');
+    const planOptions = document.querySelectorAll('.plan-option');
+    const ctaButton = document.getElementById('cta-button');
+    let selectedPlan = null;
+
+    planOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            planOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedPlan = option.dataset.plan;
+            updateCTAButton();
+        });
+    });
+
+    fullNameInput.addEventListener('input', () => {
+        if (fullNameInput.value.trim() !== '') {
+            fullNameError.style.display = 'none';
+        }
+        updateCTAButton();
+    });
+
+    emailInput.addEventListener('input', () => {
+        if (emailInput.validity.valid) {
+            emailError.style.display = 'none';
+        }
+        updateCTAButton();
+    });
+
+    function updateCTAButton() {
+        if (selectedPlan && emailInput.validity.valid && fullNameInput.value.trim() !== '') {
+            ctaButton.textContent = `Proceed with a ${selectedPlan} plan`;
+            ctaButton.disabled = false;
+        } else if (!selectedPlan && emailInput.validity.valid && fullNameInput.value.trim() !== '') {
+            ctaButton.textContent = 'Pick a plan to proceed';
+            ctaButton.disabled = true;
+        } else {
+            ctaButton.textContent = 'Complete all fields and pick a plan';
+            ctaButton.disabled = true;
+        }
+    }
+
+    planForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        if (fullNameInput.value.trim() === '') {
+            fullNameError.style.display = 'block';
+            isValid = false;
+        }
+
+        if (!emailInput.validity.valid) {
+            emailError.style.display = 'block';
+            isValid = false;
+        }
+
+        if (!selectedPlan) {
+            alert('Please select a plan before proceeding.');
+            isValid = false;
+        }
+
+        if (isValid) {
+            const loadingMessage = document.getElementById('loading-message');
+            loadingMessage.style.display = 'block';
+
+            try {
+                // First API call to partner server to get session token
+                const planId = selectedPlan === 'Premium' ? 'EARNINPREMIUM' : 'EARNINBASIC';
+                const sessionResponse = await fetch(`https://sandbox.way.com/way-partner-simulator/v1/partner/session?partnerUserId=123&email=${encodeURIComponent(emailInput.value)}&fullName=${encodeURIComponent(fullNameInput.value)}&planId=${planId}&planType=EXT_VB002`);
+
+                if (!sessionResponse.ok) {
+                    throw new Error('Session API call failed');
+                }
+
+                const sessionData = await sessionResponse.json();
+
+                if (sessionData.apiStatus !== 'Success' || !sessionData.token) {
+                    throw new Error('Invalid session response');
+                }
+
+                planForm.style.display = 'none';
+                document.querySelector('.header').style.display = 'none';
+                document.getElementById('footer-text').style.display = 'none';
+                document.getElementById('loading-message').style.display = 'none';
+
+                const checkoutHeader = document.createElement('div');
+                checkoutHeader.className = 'checkout-header';
+
+                const backButton = document.createElement('button');
+                backButton.innerHTML = '&#8592;';
+                backButton.className = 'back-button';
+                backButton.addEventListener('click', closeIframeAndReset);
+
+                const checkoutTitle = document.createElement('h1');
+                checkoutTitle.textContent = 'Checkout';
+                checkoutTitle.className = 'checkout-title';
+
+                const spacer = document.createElement('div');
+                spacer.className = 'spacer';
+
+                checkoutHeader.appendChild(backButton);
+                checkoutHeader.appendChild(checkoutTitle);
+                checkoutHeader.appendChild(spacer);
+
+                // URL to load WAY checkout page in an iframe
+                const iframeUrl = `https://sandbox.way.com/way-orders/v1/wayplus/vendor/public/checkout?token=${sessionData.token}`;
+                const iframeContainer = document.getElementById('iframe-container');
+                document.body.insertBefore(checkoutHeader, iframeContainer);
+                iframeContainer.innerHTML = `<iframe src="${iframeUrl}" width="100%" height="100%" frameborder="0"></iframe>`;
+                iframeContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                loadingMessage.style.display = 'none';
+            }
+        }
+    });
+
+    //below code is to handle the message from iframe
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'onCloseAndNotify') {
+            const checkoutData = event.data.data;
+            console.log('Checkout completed:', checkoutData);
+
+            // Close the iframe
+            const iframeContainer = document.getElementById('iframe-container');
+            iframeContainer.style.display = 'none';
+
+            const checkoutTitle = document.getElementById('checkout-title');
+            if (checkoutTitle) {
+                checkoutTitle.style.display = 'none';
+            }
+
+            // Display success message
+            displaySuccessMessage(checkoutData);
+        }
+    });
+
+
+    function displaySuccessMessage(checkoutData) {
+
+        const checkoutTitle = document.getElementById('checkout-title');
+        if (checkoutTitle) {
+            checkoutTitle.remove();
+        }
+
+        const mainContent = document.querySelector('body');
+        mainContent.innerHTML = '';
+
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+
+        successDiv.innerHTML = `
+        <div class="car-icon"></div>
+        <h1>You've subscribed to ${checkoutData.planName}!</h1>
+        <p>Use Way's mobile app to claim your benefits and submit roadside assistance requests.</p>
+        <ul>
+            <li>${checkoutData.amountToBePaidDuringRenewal} per month</li>
+            <li>Renews ${checkoutData.renewalDate}</li>
+            <li>Cancel or manage in Way's app</li>
+        </ul>
+        <div class="download-section">
+            <p>Download Way's mobile app and use ${emailInput.value} to sign in</p>
+            <button class="download-button">Download</button>
+        </div>
+        <button class="done-button">Done</button>
+    `;
+
+        mainContent.appendChild(successDiv);
+
+        // Add event listener for the Done button
+        document.querySelector('.done-button').addEventListener('click', function() {
+            // Handle "Done" action (e.g., redirect or reset form)
+            console.log('Done button clicked');
+        });
+    }
+
+    // Function to close iframe and reset the parent screen
+    function closeIframeAndReset() {
+        // Hide iframe and remove back button
+        document.getElementById('iframe-container').style.display = 'none';
+
+        // Remove checkout header (which includes the back button)
+        const checkoutHeader = document.querySelector('.checkout-header');
+        if (checkoutHeader) {
+            checkoutHeader.remove();
+        }
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.remove();
+        }
+
+        // Show the original content
+        planForm.style.display = 'block';
+        document.querySelector('.header').style.display = 'block';
+        document.getElementById('footer-text').style.display = 'block';
+
+        // Reset form fields if needed
+        // planForm.reset();
+    }
+</script>
+</body>
+</html>
